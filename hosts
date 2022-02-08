@@ -6,11 +6,11 @@ debian-3 ansible_host=127.0.0.1 ansible_ssh_private_key_file=~/.ssh/id_ed25519 a
 debian-4 ansible_host=127.0.0.1 ansible_ssh_private_key_file=~/.ssh/id_ed25519 ansible_port=2224
 
 [rocky]
-rocky-0 ansible_host=127.0.0.1 ansible_ssh_private_key_file=~/.ssh/id_ed25519 ansible_port=3220
-rocky-1 ansible_host=127.0.0.1 ansible_ssh_private_key_file=~/.ssh/id_ed25519 ansible_port=3221
-rocky-2 ansible_host=127.0.0.1 ansible_ssh_private_key_file=~/.ssh/id_ed25519 ansible_port=3222
-rocky-3 ansible_host=127.0.0.1 ansible_ssh_private_key_file=~/.ssh/id_ed25519 ansible_port=3223
-rocky-4 ansible_host=127.0.0.1 ansible_ssh_private_key_file=~/.ssh/id_ed25519 ansible_port=3224
+rocky-0 ansible_host=127.0.0.1 ansible_ssh_private_key_file=~/.ssh/id_ed25519 ansible_port=3220 ansible_password=root
+rocky-1 ansible_host=127.0.0.1 ansible_ssh_private_key_file=~/.ssh/id_ed25519 ansible_port=3221 ansible_password=root
+rocky-2 ansible_host=127.0.0.1 ansible_ssh_private_key_file=~/.ssh/id_ed25519 ansible_port=3222 ansible_password=root
+rocky-3 ansible_host=127.0.0.1 ansible_ssh_private_key_file=~/.ssh/id_ed25519 ansible_port=3223 ansible_password=root
+rocky-4 ansible_host=127.0.0.1 ansible_ssh_private_key_file=~/.ssh/id_ed25519 ansible_port=3224 ansible_password=root
 
 [linux:children]
 debian
