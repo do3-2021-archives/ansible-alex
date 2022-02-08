@@ -1,16 +1,15 @@
 ---
-- hosts: debian
+- hosts: debian-0
+
   tasks:
     - name: Installer Apache
       ansible.builtin.apt:
-        name: apache2
+        name: "{{item}}"
         state: present
         update_cache: true
-
-    - name: Installer Php7
-      ansible.builtin.apt:
-        name: libapache2-mod-php7.4
-        state: present
+      loop:
+        - apache2
+        - libapache2-mod-php7.4
 
     - name: Démarrer le service Apache
       ansible.builtin.service:
@@ -25,7 +24,26 @@
         owner: www-data
         group: www-data
         mode: 0664
-- hosts: rocky
+
+    - name: reload
+      ansible.builtin.service:
+        name: apache2
+        state: restarted
+        enabled: true
+      tags: 
+      - never
+      - relance
+    
+    - name: change config
+      ansible.builtin.copy:
+        src: ports.j2
+        dest: /etc/apache2/ports.conf
+        owner: www-data
+        group: www-data
+        mode: 0664
+
+
+- hosts: rocky-0
   tasks:
     - name: Installer Apache
       ansible.builtin.dnf:
@@ -51,3 +69,12 @@
         owner: apache
         group: apache
         mode: 0664
+
+    - name: reload
+      ansible.builtin.service:
+        name: apache2
+        state: restarted
+        enabled: true
+      tags: 
+      - never
+      - relance
