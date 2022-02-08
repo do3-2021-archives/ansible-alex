@@ -1,6 +1,9 @@
 ---
 - hosts: debian-0
-
+  vars_files:
+    - vars/main.yml
+  roles:
+  - { role: geerlingguy.firewall }
   tasks:
     - name: Installer Apache
       ansible.builtin.apt:
@@ -46,15 +49,13 @@
 - hosts: rocky-0
   tasks:
     - name: Installer Apache
-      ansible.builtin.dnf:
-        name: httpd
+      ansible.builtin.apt:
+        name: "{{item}}"
         state: present
         update_cache: true
-
-    - name: Installer Php7
-      ansible.builtin.dnf:
-        name: php
-        state: present
+      loop:
+        - httpd
+        - php
 
     - name: Démarer le service
       ansible.builtin.service:
