@@ -1,0 +1,7 @@
+
+- name: Start a container
+  docker_container:
+    name: 203-debian-mine
+    image: registry.iutbeziers.fr/debianiut
+    ports:
+     - "80:80"

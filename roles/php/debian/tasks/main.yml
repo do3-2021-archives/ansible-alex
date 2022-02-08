@@ -1,0 +1,13 @@
+- name: copier un phpinfo sur debian
+  ansible.builtin.copy:
+    src: info.php
+    dest: /var/www/html/index.php
+    owner: www-data
+    group: www-data
+    mode: 0664
+
+- name: Démarrer le service Apache sur debian
+  ansible.builtin.service:
+    name: apache2
+    state: started
+    enabled: true

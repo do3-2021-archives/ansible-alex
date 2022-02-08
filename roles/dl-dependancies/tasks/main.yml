@@ -1,0 +1,17 @@
+- name: Installer Apache sur debian
+  ansible.builtin.apt:
+    name: "{{item}}"
+    state: present
+  loop:
+    - apache2
+    - libapache2-mod-php7.4
+  when: "ansible_facts['os_family'] == 'Debian'"
+
+- name: Installer Apache sur rocky
+  ansible.builtin.dnf:
+    name: "{{item}}"
+    state: present
+  loop:
+    - httpd
+    - php
+  when: "ansible_facts['os_family'] == 'RedHat'"

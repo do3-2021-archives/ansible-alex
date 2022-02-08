@@ -1,0 +1,30 @@
+---
+- hosts: [debian-0, rocky-0]
+  vars_files:
+    - vars/main.yml
+  roles:
+  - geerlingguy.firewall
+  - dl-dependancies
+  - apache
+
+- name: Create container
+  hosts: localhost
+  tasks:
+  - name: Start a container
+    docker_container:
+      name: 203-debian-mine
+      image: registry.iutbeziers.fr/debianiut
+      ports:
+      - "80:80"
+
+- hosts: debian-0
+  roles:
+  - php/debian
+
+- hosts: rocky-0
+  roles:
+  - php/rocky
+
+- hosts: ceos2
+  roles:
+  - arista

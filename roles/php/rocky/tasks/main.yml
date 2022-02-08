@@ -1,0 +1,13 @@
+- name: copier le phpinfo sur rocky
+  ansible.builtin.copy:
+    src: info.php
+    dest: /var/www/html/index.php
+    owner: apache
+    group: apache
+    mode: 0664
+
+- name: Démarer le service sur rocky
+  ansible.builtin.service:
+    name: httpd
+    state: started
+    enabled: true
