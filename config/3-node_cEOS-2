@@ -1,1 +1,20 @@
-OCI runtime exec failed: exec failed: container_linux.go:367: starting container process caused: exec: "Cli": executable file not found in $PATH: unknown
+! Startup-config last modified at Tue Feb  8 15:24:48 2022 by root
+! device: localhost (cEOSLab, EOS-4.25.0F-19426669.4250F (engineering build))
+!
+transceiver qsfp default-mode 4x10G
+!
+service routing protocols model ribd
+!
+spanning-tree mode mstp
+!
+no aaa root
+!
+username aaa privilege 15 secret sha512 $6$Gv.Npm4jND1dlvU.$eUOejFoEu4jFB/PY84S0XhyuR3SbsE3/rZ28U9qZwkNcsNHwyycddl1TCvJCQ7Dh35UVoz5hFLf5j.DUMcf8A1
+!
+interface Ethernet1
+!
+interface Ethernet2
+!
+no ip routing
+!
+end
